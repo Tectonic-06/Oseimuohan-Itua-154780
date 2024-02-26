@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="https://kit.fontawesome.com/e8fa2e31b4.js" crossorigin="anonymous"></script>-->
+    <style>
+        body {
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            font-family: 'poppins', sans-serif;
+        }
+        .container {
+            display: flex;
+            gap: 30px;
+            width: 60%;
+            box-shadow: 2px 2px 10px #aaaaaa;
+            border-radius: 5px;
+            padding: 30px;
+        }
+        .left {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: azure;
+            border-radius: 5px;
+        }
+        .fa-solid {
+            font-size: 250px;
+            padding: 30px;
+            color: #06dbca;
+        }
+        #timer {
+            width: 50%;
+        }
+        #timer h2{
+            color: #06dbca;
+        }
+        .counter{
+            display: flex;
+            gap: 17px;
+            margin-top: 30px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .box{
+            background-color: #06dbca;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 40px;
+            border-radius: 5px;
+        }
+        .box span{
+            font-size: 30px;
+        }
+        .box p{
+            margin: 0;
+        }
+        .name{
+            display: flex;
+            gap: 40px;
+        }
+        @media screen and (max-width: 700px) {
+            .counter{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                gap: 8px;
+            }
+            h2{
+                font-size: 17px;
+                /*text-align: center;*/
+            }
+            .info{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                /* display: none; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </div>
+        <div id="timer">
+            <h2>WE ARE UNDER CONSTRUCTION</h2>
+            <strong>ESTIMATED TIME REMAINING IS 7 DAYS</strong>
+            <P class="info">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo ut voluptates accusantium a, molestiae ullam eveniet dolores nesciunt esse sint culpa amet quae veritatis ipsum ipsa, numquam rerum dignissimos quidem?
+            </P>
+            <div class="counter">
+                    <div class="box">
+                        <span id="days"></span>
+                        <p>Days</p>
+                    </div>
+                    <div class="box">
+                        <span id="hours"></span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="box">
+                        <span id="minutes"></span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="box">
+                        <span id="seconds"></span>
+                        <p>Seconds</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var timer;
+        var compareDate = new Date();
+        compareDate.setDate(compareDate.getDate() + 7);
+
+        timer = setInterval(function () {
+            timeBetweenDates(compareDate);
+        }, 1000);
+
+        function timeBetweenDates(toDate) {
+            var dateEntered = toDate;
+            var now = new Date();
+            var difference = dateEntered.getTime() - now.getTime();
+
+            if (difference <= 0) {
+                clearInterval(timer);
+            } else {
+
+                var seconds = Math.floor(difference / 1000);
+                var minutes = Math.floor(seconds / 60);
+                var hours = Math.floor(minutes / 60);
+                var days = Math.floor(hours / 24);
+
+                hours %= 24;
+                minutes %= 60;
+                seconds %= 60;
+
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+            }
+        }
+    </script>
+</body>
+
+</html>
